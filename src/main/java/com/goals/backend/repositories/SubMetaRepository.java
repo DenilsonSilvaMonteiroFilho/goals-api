@@ -1,8 +1,9 @@
 package com.goals.backend.repositories;
 
+import com.goals.backend.entities.SubMeta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SubMeta extends JpaRepository<SubMeta, Integer> {
+public interface SubMetaRepository extends JpaRepository<SubMeta, Integer> {
 }
