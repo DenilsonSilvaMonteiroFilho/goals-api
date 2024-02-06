@@ -32,6 +32,9 @@ public class SubMetaService {
         return subMetaRepository.findById(id);
     }
 
+    public void deleteById(Integer id){
+        subMetaRepository.deleteById(id);
+    }
     /*
      * Impelementar o UPDATE
      * */

@@ -31,6 +31,9 @@ public class MetaService {
         return metaRepository.findById(id);
     }
 
+    public void deleteById(Integer id){
+        metaRepository.deleteById(id);
+    }
     /*
     * Impelementar o UPDATE
     * */

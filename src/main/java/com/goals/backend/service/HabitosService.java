@@ -31,6 +31,10 @@ public class HabitosService {
         return habitoRepository.findById(id);
     }
 
+    public void deleteById(Integer id){
+        habitoRepository.deleteById(id);
+    }
+
     /*
      * Impelementar o UPDATE
      * */
