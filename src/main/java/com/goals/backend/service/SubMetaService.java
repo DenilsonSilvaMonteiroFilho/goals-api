@@ -35,7 +35,18 @@ public class SubMetaService {
     public void deleteById(Integer id){
         subMetaRepository.deleteById(id);
     }
-    /*
-     * Impelementar o UPDATE
-     * */
+    public SubMeta replaceSubMeta(SubMeta newSubMeta, Integer id) {
+        return subMetaRepository.findById(id)
+                .map(subMeta -> {
+                    subMeta.setNome(newSubMeta.getNome());
+                    subMeta.setObjetivo(newSubMeta.getObjetivo());
+                    subMeta.setPrazo(newSubMeta.getPrazo());
+                    subMeta.setConcluido(newSubMeta.isConcluido());
+                    return subMetaRepository.saveAndFlush(subMeta);
+                })
+                .orElseGet(() -> {
+                    return subMetaRepository.saveAndFlush(newSubMeta);
+                });
+    }
+
 }

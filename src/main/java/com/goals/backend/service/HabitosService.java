@@ -38,4 +38,18 @@ public class HabitosService {
     /*
      * Impelementar o UPDATE
      * */
+
+    public Habito replaceHabito(Habito newHabito, Integer id){
+        return habitoRepository.findById(id)
+                .map(habito -> {
+                    habito.setNome((newHabito.getNome()));
+                    habito.setOcorrencia(newHabito.getOcorrencia());
+                    habito.setObjetivo(newHabito.getObjetivo());
+                    return habitoRepository.saveAndFlush(habito);
+                })
+                .orElseGet(()->{
+                    return habitoRepository.saveAndFlush(newHabito);
+                });
+    }
+
 }

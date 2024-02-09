@@ -34,7 +34,20 @@ public class MetaService {
     public void deleteById(Integer id){
         metaRepository.deleteById(id);
     }
-    /*
-    * Impelementar o UPDATE
-    * */
+
+    public Meta replaceMeta(Meta newMeta, Integer id) {
+        return metaRepository.findById(id)
+                .map(meta -> {
+                    meta.setNome(newMeta.getNome());
+                    meta.setObjetivo(newMeta.getObjetivo());
+                    meta.setPrazo(newMeta.getPrazo());
+                    meta.setRelevancia(newMeta.getRelevancia());
+                    meta.setSubMeta(newMeta.getSubMeta());
+                    return metaRepository.saveAndFlush(meta);
+                })
+                .orElseGet(() -> {
+                    return metaRepository.saveAndFlush(newMeta);
+                });
+    }
+
 }
