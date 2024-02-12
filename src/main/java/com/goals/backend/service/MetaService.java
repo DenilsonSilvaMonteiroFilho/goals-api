@@ -1,6 +1,7 @@
 package com.goals.backend.service;
 
 import com.goals.backend.entities.Meta;
+import com.goals.backend.entities.SubMeta;
 import com.goals.backend.repositories.MetaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,13 @@ public class MetaService {
 
     public void deleteById(Integer id){
         metaRepository.deleteById(id);
+    }
+
+    public List<SubMeta> addSubMeta(Integer id, SubMeta subMeta){
+        Meta meta = metaRepository.findById(id).get();
+        meta.getSubMeta().add(subMeta);
+        metaRepository.saveAndFlush(meta);
+        return meta.getSubMeta();
     }
 
     public Meta replaceMeta(Meta newMeta, Integer id) {

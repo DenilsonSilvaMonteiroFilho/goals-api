@@ -1,6 +1,7 @@
 package com.goals.backend.controllers;
 
 import com.goals.backend.entities.Meta;
+import com.goals.backend.entities.SubMeta;
 import com.goals.backend.service.MetaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -44,5 +45,10 @@ public class MetaController {
     @PutMapping("/{id}")
     public Meta replace(@RequestBody Meta meta, @PathVariable Integer id){
         return metaService.replaceMeta(meta, id);
+    }
+
+    @PutMapping("/addSubMeta/{id}")
+    public List<SubMeta> addSubMeta(@PathVariable Integer id, @RequestBody SubMeta subMeta){
+        return metaService.addSubMeta(id, subMeta);
     }
 }
